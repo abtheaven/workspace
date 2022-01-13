@@ -1,0 +1,25 @@
+---
+applications:
+- name: matomo
+  env:
+    MATOMO_DATABASE_ADAPTER: PDO\MYSQL
+    MATOMO_DATABASE_DBNAME: msd21a8f7
+    MATOMO_DATABASE_HOST: msd21a8f7.service.dc1.a9ssvc
+    MATOMO_DATABASE_PASSWORD: a9se920867ae5d522259bd954391576f34b805c6bfa
+    MATOMO_DATABASE_TABLES_PREFIX: matomo_
+    MATOMO_DATABASE_USERNAME: a9s3a0ccb47f8d94d2540958900b881
+  docker:
+    image: matomo
+    #image: docker.io/bornjo/matomo:1.0
+    #username: bornjo
+  services:
+  - matomodb
+  routes:
+  - route: matomo.apps.02.cf.eu01.stackit.schwarz
+    protocol: http1
+  processes:
+  - type: web
+    instances: 1
+    memory: 1024M
+    disk_quota: 1024M
+    health-check-type: port
